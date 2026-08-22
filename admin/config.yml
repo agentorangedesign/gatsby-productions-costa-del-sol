@@ -3,3 +3,4 @@ backend:
     branch: main
     media_folder: images
     public_folder: images
+    collections: []
