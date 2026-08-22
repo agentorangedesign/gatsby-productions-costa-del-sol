@@ -1,13 +1,478 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex" />
-  <title>Gatsby Productions - Content Manager</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatsby Productions Costa del Sol</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --black: #1a1a1a;
+            --cream: #f5f5f5;
+            --dark-gold: #b8860b;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--black);
+            color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--black);
+            border-bottom: 2px solid var(--gold);
+            padding: var(--spacing-sm) 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(26, 26, 26, 0.95) 100%);
+            padding: var(--spacing-2xl) var(--spacing-lg);
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: var(--spacing-md);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+            letter-spacing: 3px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--cream);
+            max-width: 600px;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .section {
+            padding: var(--spacing-2xl) 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section h2 {
+            color: var(--gold);
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            position: relative;
+            padding-bottom: var(--spacing-lg);
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%);
+            border: 2px solid var(--gold);
+            padding: var(--spacing-lg);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .event-card:hover {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+        }
+
+        .event-card h3 {
+            color: var(--gold);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+            margin-top: var(--spacing-sm);
+        }
+
+        .event-date {
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+
+        .event-location {
+            color: rgba(212, 175, 55, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .event-description {
+            color: var(--cream);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: var(--spacing-xl) auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .contact-item h3 {
+            color: var(--gold);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
+        }
+
+        .contact-item p {
+            color: var(--cream);
+            font-size: 1rem;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid var(--gold);
+            padding: var(--spacing-xl) var(--spacing-lg);
+            text-align: center;
+            color: var(--cream);
+            margin-top: var(--spacing-2xl);
+        }
+
+        footer p {
+            margin: var(--spacing-sm) 0;
+        }
+
+        .footer-credit {
+            font-size: 0.85rem;
+            color: rgba(212, 175, 55, 0.7);
+            margin-top: var(--spacing-lg);
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--gold);
+            padding: var(--spacing-lg);
+            font-style: italic;
+        }
+
+        .error {
+            background-color: rgba(255, 100, 100, 0.1);
+            border: 2px solid rgba(255, 100, 100, 0.5);
+            color: rgba(255, 180, 180, 0.9);
+            padding: var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .no-events {
+            text-align: center;
+            color: var(--cream);
+            padding: var(--spacing-xl);
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav {
+                gap: var(--spacing-sm);
+                justify-content: center;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .section h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: var(--spacing-xl) 0;
+            }
+
+            .container, .header-content {
+                padding: 0 var(--spacing-sm);
+            }
+
+            nav {
+                flex-direction: column;
+                gap: var(--spacing-xs);
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <script src="https://unpkg.com/netlify-cms@^2.10.146/dist/netlify-cms.js"></script>
+    <header>
+        <div class="header-content">
+            <div class="logo">GATSBY PRODUCTIONS</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#events">Events</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div>
+            <h1>GATSBY PRODUCTIONS</h1>
+            <p>Luxury Events & Entertainment on the Costa del Sol</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="section" id="events">
+            <h2>Upcoming Events</h2>
+            <div id="events-container" class="events-grid">
+                <div class="loading">Loading events from Sanity CMS...</div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Gatsby Productions brings elegance, sophistication, and unforgettable moments to the stunning Costa del Sol. We specialise in luxury event planning, exclusive entertainment, and bespoke productions that capture the essence of Mediterranean glamour.</p>
+                    <p>With decades of experience in the hospitality and entertainment industries, our team understands what it takes to create truly exceptional events. From intimate soirées to grand galas, we handle every detail with precision and passion.</p>
+                </div>
+                <div class="about-text">
+                    <p>Our commitment to excellence is reflected in every event we produce. We work with the finest venues, vendors, and talent to ensure your event surpasses expectations.</p>
+                    <p>Whether you're celebrating a milestone, hosting corporate entertainment, or planning an exclusive private event, Gatsby Productions delivers the sophistication and professionalism you deserve.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-content">
+                <p>Ready to create something spectacular? Let's talk about your vision.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@gatsbyproductions.es" style="color: var(--gold); text-decoration: none;">info@gatsbyproductions.es</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Phone</h3>
+                        <p>Available upon request</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Gatsby Productions Costa del Sol. All rights reserved.</p>
+        <div class="footer-credit">
+            <p>Website powered by Sanity CMS</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sanity CMS Configuration - PROJECT ID: xf6dufmw
+        const SANITY_PROJECT_ID = 'xf6dufmw';
+        const SANITY_DATASET = 'production';
+        const SANITY_API_VERSION = '2023-05-03';
+
+        async function loadEvents() {
+            const container = document.getElementById('events-container');
+
+            try {
+                const query = encodeURIComponent(`*[_type == "event"] | order(eventDate asc)`);
+                const url = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.result && data.result.length > 0) {
+                    const eventsHTML = data.result.map(event => {
+                        const eventDate = new Date(event.eventDate);
+                        const formattedDate = eventDate.toLocaleDateString('en-ES', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+
+                        return `
+                            <div class="event-card">
+                                <h3>${escapeHtml(event.title)}</h3>
+                                <div class="event-date">${formattedDate}</div>
+                                ${event.location ? `<div class="event-location">${escapeHtml(event.location)}</div>` : ''}
+                                <div class="event-description">${escapeHtml(event.description)}</div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    container.innerHTML = eventsHTML;
+                } else {
+                    container.innerHTML = '<div class="no-events">No events scheduled at this time. Check back soon for announcements!</div>';
+                }
+            } catch (error) {
+                console.error('Error loading events:', error);
+                container.innerHTML = `<div class="error"><p>Unable to load events at this time. Please try again later.</p></div>`;
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadEvents);
+    </script>
 </body>
 </html>
