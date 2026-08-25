@@ -1,0 +1,109 @@
+.section {
+  padding: var(--spacing-2xl) 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0 var(--spacing-lg);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section h2 {
+  color: var(--gold);
+  font-size: 2.5rem;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  position: relative;
+  padding-bottom: var(--spacing-lg);
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background-color: var(--gold);
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.event-card {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%);
+  border: 2px solid var(--gold);
+  padding: var(--spacing-lg);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold);
+}
+
+.event-card:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+}
+
+.event-card h3 {
+  color: var(--gold);
+  margin-bottom: var(--spacing-sm);
+  font-size: 1.5rem;
+  margin-top: var(--spacing-sm);
+}
+
+.event-date {
+  color: var(--gold);
+  font-weight: bold;
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+.event-location {
+  color: rgba(212, 175, 55, 0.8);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.event-description {
+  color: var(--cream);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.no-events {
+  text-align: center;
+  color: var(--cream);
+  padding: var(--spacing-xl);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .section h2 {
+    font-size: 1.8rem;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,49 @@
+.talent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.talent-card {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%);
+  border: 2px solid var(--gold);
+  padding: var(--spacing-lg);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.talent-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+}
+
+.talent-card h3 {
+  color: var(--gold);
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.talent-specialization {
+  color: rgba(212, 175, 55, 0.8);
+  font-style: italic;
+  margin-bottom: var(--spacing-md);
+}
+
+.talent-bio {
+  color: var(--cream);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.no-content {
+  text-align: center;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  color: var(--cream);
+}
+
+@media (max-width: 768px) {
+  .talent-grid {
+    grid-template-columns: 1fr;
+  }
+}

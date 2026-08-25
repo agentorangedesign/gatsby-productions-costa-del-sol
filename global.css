@@ -1,0 +1,72 @@
+:root {
+  --gold: #D4AF37;
+  --black: #1a1a1a;
+  --cream: #f5f5f5;
+  --dark-gold: #b8860b;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: var(--black);
+  color: var(--cream);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--dark-gold);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gold);
+  letter-spacing: 2px;
+}
+
+header {
+  background-color: var(--black);
+  border-bottom: 2px solid var(--gold);
+  padding: var(--spacing-sm) 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.9);
+  border-top: 2px solid var(--gold);
+  padding: var(--spacing-xl) var(--spacing-lg);
+  text-align: center;
+  color: var(--cream);
+  margin-top: var(--spacing-2xl);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2rem;
+  }
+}
